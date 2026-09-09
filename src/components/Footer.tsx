@@ -38,9 +38,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             }}
             className="hover:text-white transition-colors cursor-pointer"
           >
-            Examples
+            
           </button>
-          <span className="text-zinc-600">/</span>
+          <span className="text-zinc-600"></span>
           <button
             type="button"
             onClick={() => onNavigate('about')}
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           >
             About
           </button>
-          <span className="text-zinc-600">/</span>
+          <span className="text-zinc-600">•</span>
           <button
             type="button"
             onClick={() => onNavigate('privacy')}
@@ -56,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           >
             Privacy Policy
           </button>
-          <span className="text-zinc-600">/</span>
+          <span className="text-zinc-600">•</span>
           <button
             type="button"
             onClick={() => onNavigate('terms')}

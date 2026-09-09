@@ -16,10 +16,10 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           className="flex items-center select-none cursor-pointer focus:outline-hidden group"
           title="Return to Converter"
         >
-          <span className="text-xl sm:text-2xl font-normal font-sans leading-none tracking-normal">
+       <span className="text-xl sm:text-2xl font-normal font-sans leading-none tracking-normal">
             <span className="text-white group-hover:text-gray-200 transition-colors">json2</span>
-            <span className="text-[#F7DF1E]">js</span>
-            <span className="text-white group-hover:text-gray-200 transition-colors"></span>
+            <span className="text-[#F7DF1E]">.js</span>
+            <span className="text-white group-hover:text-gray-200 transition-colors">.org</span>
           </span>
         </button>
 

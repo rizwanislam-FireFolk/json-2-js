@@ -37,7 +37,7 @@ export const AboutPage: React.FC<PageProps> = ({ onBack }) => {
             js.org Community Hosted Project
           </h2>
           <p>
-            <strong>json2js</strong>
+            <strong>json2.js.org</strong> is hosted on the popular community-driven <strong>js.org</strong> subdomain network for the JavaScript community.
             It was created to give developers a lightning-fast, zero-friction, and completely ad-free way to transform JSON payloads into native JavaScript object literals and vice versa.
           </p>
           <p className="mt-3 text-gray-400">
