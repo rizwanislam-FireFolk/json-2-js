@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON to JavaScript Object Converter for Free</title>
+    <meta name="description" content="Free online JSON to JavaScript Object Converter. Convert your JSON file into clean JavaScript with advanced settings at your fingertips. 100% free, offline, and private with no data uploaded to servers." />
+    <meta name="keywords" content="json to javascript, json to js object, json to js converter, convert json to javascript object, json to object converter, json formatter, json validator, json parser, json to es6 object, free json converter, offline json to js" />
+    <meta name="author" content="json2.js.org" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://json2.js.org/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://json2.js.org/" />
+    <meta property="og:site_name" content="JSON to JavaScript Object Converter" />
+    <meta property="og:title" content="JSON to JavaScript Object Converter for Free" />
+    <meta property="og:description" content="Convert your JSON file into JavaScript with advanced settings at your fingertips. 100% free, easy to use and offline conversion with no hidden fees!" />
+    <meta property="og:image" content="https://json2.js.org/pwa-512x512.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://json2.js.org/" />
+    <meta name="twitter:title" content="JSON to JavaScript Object Converter for Free" />
+    <meta name="twitter:description" content="Convert your JSON file into JavaScript with advanced settings at your fingertips. 100% free, easy to use and offline conversion with no hidden fees!" />
+    <meta name="twitter:image" content="https://json2.js.org/pwa-512x512.png" />
+
+    <!-- PWA & Mobile Icons -->
+    <meta name="theme-color" content="#F7DF1E" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="JSON to JS Object" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://json2.js.org/#webapp",
+            "name": "JSON to JavaScript Object Converter",
+            "url": "https://json2.js.org/",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "description": "Free online developer tool to convert JSON strings, files, and payloads into clean, idiomatic JavaScript object literals and ES6 code.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "JSON to JavaScript Object literal transformation",
+              "Unquoted valid JavaScript identifier keys",
+              "Single quote or double quote formatting",
+              "ES6 Variable declarations (const, let, var, export)",
+              "100% Client-side and offline processing",
+              "Customizable indentation and trailing commas",
+              "Instant syntax validation and line error indicators"
+            ]
+          },
+          {
+            "@type": "HowTo",
+            "name": "How to Convert JSON to a JavaScript Object",
+            "description": "Step-by-step instructions to convert JSON into clean JavaScript code and object literals.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Paste or Upload JSON",
+                "text": "Paste your raw JSON text into the left input editor or click Upload to select a .json file."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Customize Formatting Options",
+                "text": "Select your desired quote style (single/double), quote key behavior (unquote valid JS keys), indentation spaces, and variable declaration wrappers."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Copy or Download JavaScript Output",
+                "text": "Click 'Copy Output' to copy the converted JavaScript object to your clipboard or 'Download .js' to save it as a JavaScript file."
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the difference between JSON and a JavaScript Object?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "JSON is a strict data interchange text format where all property names must be double-quoted strings and trailing commas or functions are forbidden. A JavaScript Object is a native language construct that allows unquoted valid identifier keys, single quotes, trailing commas, methods, and expressions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this JSON to JavaScript converter free and secure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, 100% free with no registration required. All conversion logic runs entirely inside your browser using client-side JavaScript. Your data is never uploaded to any server."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does this tool work offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! The converter is fully client-side and can be installed as a PWA on your desktop or mobile device to work completely offline."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function() {
+        var RELOAD_FLAG = '__sw_recovery_reload__';
+        var hasAttemptedReload = false;
+
+        function cleanupAndReload() {
+          if (hasAttemptedReload) return;
+          hasAttemptedReload = true;
+
+          var cleanups = [];
+          if ('serviceWorker' in navigator) {
+            cleanups.push(
+              navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                return Promise.all(registrations.map(function(r) { return r.unregister(); }));
+              }).catch(function() {})
+            );
+          }
+          if ('caches' in window) {
+            cleanups.push(
+              caches.keys().then(function(keys) {
+                return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+              }).catch(function() {})
+            );
+          }
+          Promise.all(cleanups).finally(function() {
+            window.location.reload();
+          });
+        }
+
+        window.addEventListener('error', function(event) {
+          var target = event.target;
+          if (!target) return;
+          var tagName = (target.tagName || '').toUpperCase();
+          if (tagName !== 'SCRIPT' && tagName !== 'LINK') return;
+
+          var url = target.src || target.href || '';
+          if (
+            url.indexOf('/assets/') !== -1 ||
+            url.indexOf('/src/') !== -1 ||
+            url.indexOf('/@') !== -1 ||
+            url.indexOf('/node_modules/') !== -1
+          ) {
+            var canReload = false;
+            try {
+              if (!sessionStorage.getItem(RELOAD_FLAG)) {
+                sessionStorage.setItem(RELOAD_FLAG, '1');
+                canReload = true;
+              }
+            } catch (e) {
+              if (!hasAttemptedReload) {
+                canReload = true;
+              }
+            }
+
+            if (canReload) {
+              cleanupAndReload();
+            }
+          }
+        }, true);
+
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            try {
+              var root = document.getElementById('root');
+              if (root && root.childNodes.length > 0) {
+                sessionStorage.removeItem(RELOAD_FLAG);
+              }
+            } catch (e) {}
+          }, 3000);
+        });
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

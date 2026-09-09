@@ -1,0 +1,7 @@
+{
+  "name": "JSON to JavaScript Object Converter",
+  "description": "Free online JSON to JavaScript Object Converter. Convert JSON files into clean, valid JavaScript object literals, ES6 modules, and constants with advanced settings. 100% free, offline, and private.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

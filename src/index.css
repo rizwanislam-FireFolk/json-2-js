@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #f4f4f5;
+    background-color: #09090b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, kbd, samp {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Global scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Light mode overrides if active */
+.light {
+  body {
+    color: #09090b;
+    background-color: #fafafa;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f4f4f5;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d4d4d8;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #a1a1aa;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f4f4f5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d4d4d8;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1aa;
+  }
+}
+
+/* Prism Real Syntax Highlighting - Vibrant Developer Dark Theme */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #71717a !important;
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #a1a1aa !important;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol {
+  color: #38bdf8 !important; /* Sky 400 for keys and properties */
+}
+
+.token.boolean,
+.token.number {
+  color: #fb923c !important; /* Orange 400 for numbers and booleans */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #4ade80 !important; /* Vibrant green 400 for strings */
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+  color: #f472b6 !important; /* Pink 400 for operators */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #c084fc !important; /* Purple 400 for keywords (const, export, etc) */
+  font-weight: 600;
+}
+
+.token.function,
+.token.class-name {
+  color: #F7DF1E !important; /* JS Yellow for functions and class names */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #facc15 !important;
+}
+
+.token.null {
+  color: #f87171 !important; /* Red 400 for null/undefined */
+}
+
+/* react-simple-code-editor overrides for pixel-perfect native selection */
+.editor-textarea-native {
+  outline: none !important;
+  caret-color: #F7DF1E !important;
+}
+
+.editor-textarea-native::selection {
+  background: rgba(247, 223, 30, 0.35) !important;
+}
+
+.editor-textarea-native::-moz-selection {
+  background: rgba(247, 223, 30, 0.35) !important;
+}
+
+.editor-pre-native {
+  outline: none !important;
+}
+
+/* Ensure code blocks have proper tab sizing */
+pre, code, textarea {
+  tab-size: 2;
+  -moz-tab-size: 2;
+}
