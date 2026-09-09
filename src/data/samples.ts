@@ -220,3 +220,14 @@ export const POPULAR_CONVERSIONS = [
   { label: 'JSON with Trailing Commas', desc: 'Prettier & Git-friendly diff format' },
   { label: 'JSON File to .js Module', desc: 'Upload .json and download .js file' },
 ];
+
+export const POPULAR_TS_CONVERSIONS = [
+  { label: 'JSON to TypeScript Interface', desc: 'Generate nested export interface declarations' },
+  { label: 'JSON to TypeScript Type', desc: 'Generate export type alias with inferred structure' },
+  { label: 'JSON to as const', desc: 'export const data = { ... } as const literal narrowing' },
+  { label: 'JSON to Typed Runtime Object', desc: 'Interface + const data: InterfaceName = { ... }' },
+  { label: 'JSON to Interface Only', desc: 'Pure TypeScript definitions with no runtime payload' },
+  { label: 'Nested JSON to Sub-Interfaces', desc: 'Auto-extracts child interfaces with PascalCase names' },
+  { label: 'JSON Array to TS Type', desc: 'Generates ItemType[] array definitions' },
+  { label: 'JSON to .ts Module File', desc: 'Upload .json and download typed .ts file' },
+];

@@ -10,7 +10,7 @@ import {
   AlignLeft,
   Minimize2,
 } from 'lucide-react';
-import { ConverterOptions, ConversionResult } from '../types';
+import { ConverterOptions, ConversionResult, TargetLanguage } from '../types';
 import { convertJsonToJsObject, convertJsToJson, formatJsonString, minifyJsonString } from '../utils/jsonToJsConverter';
 import { SAMPLE_JSONS } from '../data/samples';
 import { CodeEditor } from './CodeEditor';
@@ -18,7 +18,15 @@ import { CodeViewer } from './CodeViewer';
 
 type ConversionDirection = 'json-to-js' | 'js-to-json';
 
-export const ConverterWorkspace: React.FC = () => {
+interface ConverterWorkspaceProps {
+  targetLanguage?: TargetLanguage;
+  onSelectLanguage?: (lang: TargetLanguage) => void;
+}
+
+export const ConverterWorkspace: React.FC<ConverterWorkspaceProps> = ({
+  targetLanguage = 'javascript',
+  onSelectLanguage,
+}) => {
   const [direction, setDirection] = useState<ConversionDirection>('json-to-js');
   const [inputText, setInputText] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
@@ -26,7 +34,7 @@ export const ConverterWorkspace: React.FC = () => {
   const [isConverting, setIsConverting] = useState<boolean>(false);
 
   const [options, setOptions] = useState<ConverterOptions>({
-    variableDeclaration: 'const',
+    variableDeclaration: targetLanguage === 'typescript' ? 'ts_as_const' : 'const',
     variableName: 'data',
     quoteStyle: 'single',
     unquoteKeys: true,
@@ -43,6 +51,25 @@ export const ConverterWorkspace: React.FC = () => {
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Synchronize options with targetLanguage when changed from parent or URL
+  useEffect(() => {
+    if (targetLanguage === 'typescript') {
+      setOptions(prev => {
+        if (!prev.variableDeclaration.startsWith('ts_')) {
+          return { ...prev, variableDeclaration: 'ts_as_const' };
+        }
+        return prev;
+      });
+    } else if (targetLanguage === 'javascript') {
+      setOptions(prev => {
+        if (prev.variableDeclaration.startsWith('ts_')) {
+          return { ...prev, variableDeclaration: 'const' };
+        }
+        return prev;
+      });
+    }
+  }, [targetLanguage]);
 
   const performConversion = useCallback((text: string, dir: ConversionDirection, opts: ConverterOptions) => {
     setIsConverting(true);
@@ -138,8 +165,11 @@ export const ConverterWorkspace: React.FC = () => {
   const handleDownload = () => {
     if (!result.output) return;
     const isJs = direction === 'json-to-js';
-    const extension = isJs ? 'js' : 'json';
-    const mimeType = isJs ? 'application/javascript;charset=utf-8' : 'application/json;charset=utf-8';
+    const isTs = isJs && options.variableDeclaration.startsWith('ts_');
+    const extension = isJs ? (isTs ? 'ts' : 'js') : 'json';
+    const mimeType = isJs
+      ? (isTs ? 'application/typescript;charset=utf-8' : 'application/javascript;charset=utf-8')
+      : 'application/json;charset=utf-8';
     const filename = `${options.variableName || 'output'}.${extension}`;
     
     const blob = new Blob([result.output], { type: mimeType });
@@ -184,12 +214,23 @@ export const ConverterWorkspace: React.FC = () => {
     }
   };
 
+  const handleFormatChange = (newVal: ConverterOptions['variableDeclaration']) => {
+    setOptions(prev => ({ ...prev, variableDeclaration: newVal }));
+    if (newVal.startsWith('ts_')) {
+      onSelectLanguage?.('typescript');
+    } else {
+      onSelectLanguage?.('javascript');
+    }
+  };
+
   const isJsonToJs = direction === 'json-to-js';
-  const leftLabel = isJsonToJs ? 'JSON' : 'JavaScript';
-  const rightLabel = isJsonToJs ? 'JavaScript' : 'JSON';
+  const isTypeScript = options.variableDeclaration.startsWith('ts_');
+  const targetLabel = isTypeScript ? 'TypeScript' : 'JavaScript';
+  const leftLabel = isJsonToJs ? 'JSON' : targetLabel;
+  const rightLabel = isJsonToJs ? targetLabel : 'JSON';
   const leftPlaceholder = isJsonToJs 
     ? 'Paste your JSON or upload a file...'
-    : 'Paste your JavaScript or upload a file...';
+    : `Paste your ${targetLabel} or upload a file...`;
 
   return (
     <div id="converter-section" className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-4">
@@ -294,16 +335,20 @@ export const ConverterWorkspace: React.FC = () => {
           <button
             type="button"
             onClick={handleSwapDirection}
-            className="group relative flex items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full bg-[#F7DF1E] hover:bg-[#ebd21a] active:scale-95 text-zinc-950 shadow-md transition-all cursor-pointer"
-            title="Switch direction (JSON ↔ JavaScript)"
+            className={`group relative flex items-center justify-center w-11 h-11 lg:w-12 lg:h-12 rounded-full ${
+              isTypeScript
+                ? 'bg-[#3178C6] hover:bg-[#2563eb] text-white'
+                : 'bg-[#F7DF1E] hover:bg-[#ebd21a] text-zinc-950'
+            } active:scale-95 shadow-md transition-all cursor-pointer`}
+            title={isTypeScript ? 'Switch direction (JSON ↔ TypeScript)' : 'Switch direction (JSON ↔ JavaScript)'}
           >
             <ArrowLeftRight className={`w-5 h-5 transition-transform group-hover:scale-110 ${isConverting ? 'animate-spin' : ''}`} />
           </button>
         </div>
 
-        {/* RIGHT CARD: JavaScript */}
+        {/* RIGHT CARD: JavaScript or TypeScript */}
         <div className="relative bg-zinc-900 rounded-2xl border border-zinc-800 shadow-xs flex flex-col overflow-hidden h-[580px] min-h-[580px] w-full">
-          {/* Card Header: Plain 'JavaScript' title, clean icon-only copy button, and single Download button */}
+          {/* Card Header: Plain title, clean icon-only copy button, and single Download button */}
           <div className="px-4 py-3 bg-zinc-900 border-b border-zinc-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-sm font-semibold text-white tracking-wide">{rightLabel}</span>
@@ -325,11 +370,15 @@ export const ConverterWorkspace: React.FC = () => {
                 type="button"
                 onClick={handleDownload}
                 disabled={!result.output}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-zinc-950 bg-[#F7DF1E] hover:bg-[#ebd21a] disabled:opacity-40 disabled:cursor-not-allowed transition-all cursor-pointer shadow-xs"
-                title="Download file"
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer shadow-xs disabled:opacity-40 disabled:cursor-not-allowed ${
+                  isTypeScript
+                    ? 'text-white bg-[#3178C6] hover:bg-[#2563eb]'
+                    : 'text-zinc-950 bg-[#F7DF1E] hover:bg-[#ebd21a]'
+                }`}
+                title={isTypeScript ? 'Download .ts file' : 'Download .js file'}
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Download</span>
+                <span>Download {isJsonToJs ? (isTypeScript ? '.ts' : '.js') : '.json'}</span>
               </button>
             </div>
           </div>
@@ -345,8 +394,8 @@ export const ConverterWorkspace: React.FC = () => {
 
             <CodeViewer
               code={result.output}
-              language={isJsonToJs ? 'javascript' : 'json'}
-              placeholder="// Converted code will appear here..."
+              language={isJsonToJs ? (isTypeScript ? 'typescript' : 'javascript') : 'json'}
+              placeholder={isTypeScript ? '// Converted TypeScript code will appear here...' : '// Converted code will appear here...'}
               showLineNumbers={true}
             />
           </div>
@@ -372,18 +421,25 @@ export const ConverterWorkspace: React.FC = () => {
                   <span className="text-gray-400 font-semibold uppercase tracking-wider text-[11px]">Format:</span>
                   <select
                     value={options.variableDeclaration}
-                    onChange={(e) => setOptions(prev => ({ ...prev, variableDeclaration: e.target.value as ConverterOptions['variableDeclaration'] }))}
+                    onChange={(e) => handleFormatChange(e.target.value as ConverterOptions['variableDeclaration'])}
                     className="bg-zinc-800 border border-zinc-700 text-white rounded-lg px-2.5 py-1.5 text-xs outline-hidden cursor-pointer"
                   >
-                    <option value="const">const data = &#123;...&#125;</option>
-                    <option value="let">let data = &#123;...&#125;</option>
-                    <option value="var">var data = &#123;...&#125;</option>
-                    <option value="export_const">export const data = &#123;...&#125;</option>
-                    <option value="export_default">export default &#123;...&#125;</option>
-                    <option value="module_exports">module.exports = &#123;...&#125;</option>
-                    <option value="ts_as_const">TS: const data = &#123;...&#125; as const</option>
-                    <option value="object_freeze">Object.freeze(&#123;...&#125;)</option>
-                    <option value="none">Raw Object &#123;...&#125;</option>
+                    <optgroup label="JavaScript Formats">
+                      <option value="const">const data = &#123;...&#125;</option>
+                      <option value="let">let data = &#123;...&#125;</option>
+                      <option value="var">var data = &#123;...&#125;</option>
+                      <option value="export_const">export const data = &#123;...&#125;</option>
+                      <option value="export_default">export default &#123;...&#125;</option>
+                      <option value="module_exports">module.exports = &#123;...&#125;</option>
+                      <option value="object_freeze">Object.freeze(&#123;...&#125;)</option>
+                      <option value="none">Raw Object &#123;...&#125;</option>
+                    </optgroup>
+                    <optgroup label="TypeScript Formats">
+                      <option value="ts_as_const">TypeScript: const data = &#123;...&#125; as const</option>
+                      <option value="ts_interface">TypeScript: interface &amp; const data</option>
+                      <option value="ts_type">TypeScript: type &amp; const data</option>
+                      <option value="ts_interface_only">TypeScript: interface definitions only</option>
+                    </optgroup>
                   </select>
                 </div>
 

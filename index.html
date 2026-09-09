@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON to JavaScript Object Converter for Free</title>
-    <meta name="description" content="Free online JSON to JavaScript Object Converter. Convert your JSON file into clean JavaScript with advanced settings at your fingertips. 100% free, offline, and private with no data uploaded to servers." />
-    <meta name="keywords" content="json to javascript, json to js object, json to js converter, convert json to javascript object, json to object converter, json formatter, json validator, json parser, json to es6 object, free json converter, offline json to js" />
+    <title>JSON to JavaScript & TypeScript Converter for Free</title>
+    <meta name="description" content="Convert your JSON file into JavaScript and TypeScript with advanced settings at your fingertips. All are 100% FREE, easy to use and offline conversion with no hidden fees!" />
+    <meta name="keywords" content="json to typescript, convert json to typescript, json to ts, json to typescript interface, json to ts type generator, json to types, typescript interface from json, json to ts free, offline json to typescript, json to javascript, json to js object, json to js converter, convert json to javascript object, json to object converter, json formatter, json validator, json parser, json to es6 object, free json converter, offline json to js" />
     <meta name="author" content="json2.js.org" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://json2.js.org/" />
@@ -13,17 +13,17 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://json2.js.org/" />
-    <meta property="og:site_name" content="JSON to JavaScript Object Converter" />
-    <meta property="og:title" content="JSON to JavaScript Object Converter for Free" />
-    <meta property="og:description" content="Convert your JSON file into JavaScript with advanced settings at your fingertips. 100% free, easy to use and offline conversion with no hidden fees!" />
+    <meta property="og:site_name" content="JSON to JavaScript & TypeScript Converter" />
+    <meta property="og:title" content="JSON to JavaScript & TypeScript Converter for Free" />
+    <meta property="og:description" content="Convert your JSON file into JavaScript and TypeScript with advanced settings at your fingertips. All are 100% FREE, easy to use and offline conversion with no hidden fees!" />
     <meta property="og:image" content="https://json2.js.org/pwa-512x512.png" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://json2.js.org/" />
-    <meta name="twitter:title" content="JSON to JavaScript Object Converter for Free" />
-    <meta name="twitter:description" content="Convert your JSON file into JavaScript with advanced settings at your fingertips. 100% free, easy to use and offline conversion with no hidden fees!" />
+    <meta name="twitter:title" content="JSON to JavaScript & TypeScript Converter for Free" />
+    <meta name="twitter:description" content="Convert your JSON file into JavaScript and TypeScript with advanced settings at your fingertips. All are 100% FREE, easy to use and offline conversion with no hidden fees!" />
     <meta name="twitter:image" content="https://json2.js.org/pwa-512x512.png" />
 
     <!-- PWA & Mobile Icons -->
@@ -92,6 +92,30 @@
             ]
           },
           {
+            "@type": "WebApplication",
+            "@id": "https://json2.js.org/json-to-typescript#webapp",
+            "name": "JSON to TypeScript Converter",
+            "url": "https://json2.js.org/json-to-typescript",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "description": "Free online developer tool to convert JSON documents and API responses into clean, strongly typed TypeScript interfaces, type aliases, and typed objects.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "JSON to TypeScript interface generation",
+              "JSON to TypeScript type alias generation",
+              "as const deep literal narrowing",
+              "Nested object interface extraction",
+              "Typed array and union inference",
+              "100% Client-side and offline processing",
+              "Custom indentation and formatting options"
+            ]
+          },
+          {
             "@type": "FAQPage",
             "mainEntity": [
               {
@@ -104,10 +128,18 @@
               },
               {
                 "@type": "Question",
-                "name": "Is this JSON to JavaScript converter free and secure?",
+                "name": "How does the JSON to TypeScript converter work?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes, 100% free with no registration required. All conversion logic runs entirely inside your browser using client-side JavaScript. Your data is never uploaded to any server."
+                  "text": "The converter parses your raw JSON structure and recursively infers static TypeScript type representations, automatically generating clean PascalCase interface definitions, type aliases, or typed object literals with const assertions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this JSON to JavaScript and TypeScript converter free and secure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, 100% free with no registration or fees. All conversion logic runs entirely inside your browser using client-side JavaScript. Your data is never uploaded to any remote server."
                 }
               },
               {
