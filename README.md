@@ -1,4 +1,43 @@
 <div align="center">
 
-# JSON to JavaScript & TypeScript Converter ### `json2.js.org`       **Convert JSON files and text payloads into clean, idiomatic JavaScript object literals, TypeScript interfaces, types, and ES6 modules with advanced configuration settings.** 100% Free • Offline-First • Client-Side Only • No Hidden Fees **Live Demo** • **Report Bug** • **Request Feature**
---- ## Overview **JSON to JavaScript & TypeScript Converter** is an open-source, client-side web utility tailored for modern frontend and full-stack developers. While JSON is a strict serialization standard requiring double-quoted keys and disallowing comments, trailing commas, or functions, modern JavaScript and TypeScript codebases benefit from clean unquoted object literals, strongly typed interfaces, ES6 variable declarations, and type assertions (`as const`). This tool bridges that gap cleanly and privately right inside your browser. --- ## Key Features - **Zero-Latency In-Browser Conversion**: All AST parsing, interface generation, and formatting runs entirely in client-side memory. - **100% Private & Safe**: No data or payloads are ever uploaded to any backend server or third-party service. - **JavaScript & TypeScript Generation**: - **JSON to JS Object**: Strips redundant quotes on valid identifiers, supports ES6 export wrappers, single quotes, and trailing commas. - **JSON to TypeScript Types**: Generates clean TypeScript `interface` or `type` definitions automatically inferred from your JSON structure. - **JavaScript to JSON**: Safely parses JavaScript object literals back into valid RFC 8259 JSON format. - **Real Syntax Highlighting**: Powered by PrismJS for JS, TS, and JSON token coloring (keywords, keys, strings, numbers, booleans, types, and operators). - **Advanced Formatting Options**: - **Variable & Type Wrappers**: `const`, `let`, `var`, `export const`, `export default`, `interface`, `type`, `as const`, `Object.freeze()`, or raw object literals. - **Quote Types**: Single quotes (`'`), double quotes (`"`), or backticks (`` ` ``). - **Key Quote Handling**: Smart unquoting of valid identifiers while keeping reserved words (e.g. `class`, `default`) and special characters safely quoted. - **Indentation**: 2 spaces, 4 spaces, tabs, or compact/minified output. - **Key Sorting**: Alphabetical property sorting recursively across nested objects. - **Trailing Commas & Semicolons**: Clean formatting tailored for atomic Git diffs. - **PWA & Offline Installation**: Installable as a lightweight desktop or mobile PWA that functions without an active internet connection. - **SEO & Structured Data**: Pre-configured OpenGraph metadata, Twitter cards, and JSON-LD schema (`WebApplication`, `HowTo`, `FAQPage`). --- ## Before & After Comparison ### Input JSON ```json { "project": "json-to-js", "version": "1.0.0", "private": true, "scripts": { "dev": "vite", "build": "vite build" }, "tags": [ "json", "javascript", "typescript", "converter" ] } ``` ### Output TypeScript Interface ```typescript export interface ProjectConfig { project: string; version: string; private: boolean; scripts: { dev: string; build: string; }; tags: string[]; } ``` ### Output JavaScript Object (`as const`) ```javascript export const config = { project: 'json-to-js', version: '1.0.0', private: true, scripts: { dev: 'vite', build: 'vite build', }, tags: [ 'json', 'javascript', 'typescript', 'converter', ], } as const; ``` --- ## Getting Started ### Local Development 1. Clone the repository: ```bash git clone https://github.com/your-username/json-to-js-converter.git cd json-to-js-converter ``` 2. Install dependencies: ```bash npm install ``` 3. Run the development server: ```bash npm run dev ``` 4. Build for production: ```bash npm run build ``` --- ## Tech Stack - **Framework**: React 18 with TypeScript - **Build Tool**: Vite 6 - **Styling**: Tailwind CSS 4 - **Syntax Highlighting**: PrismJS - **Deployment**: GitHub Pages (`json2.js.org`) --- ## License Distributed under the MIT License. See `LICENSE` for more information.
+# JSON to JavaScript & TypeScript Converter
+
+> **json2.js.org** — Convert JSON payloads into clean, idiomatic JavaScript object literals, TypeScript interfaces, types, and ES6 modules.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.x-61dafb.svg?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF.svg?logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.x-38B2AC.svg?logo=tailwind-css)](https://tailwindcss.com/)
+[![PWA Ready](https://img.shields.io/badge/PWA-Offline%20Ready-green.svg)](https://json2.js.org/)
+
+100% Free • Offline-First • Client-Side Only • Zero Latency
+
+[Live Demo](https://json2.js.org/) | [Report Bug](https://github.com/your-username/json-to-js-converter/issues) | [Request Feature](https://github.com/your-username/json-to-js-converter/issues)
+
+---
+
+## Overview
+
+JSON to JavaScript & TypeScript Converter is an open-source, client-side web utility built for modern frontend and full-stack developers.
+
+While standard JSON requires strict double-quoted keys and forbids trailing commas, comments, or types, modern JS/TS codebases rely on unquoted object keys, typed interfaces, and literal assertions (`as const`). This utility performs all AST parsing and formatting entirely in your browser memory without sending data to an external server.
+
+---
+
+## Key Features
+
+* **Zero-Latency Processing**: In-browser AST parsing, type inference, and syntax formatting.
+* **100% Private**: Zero analytics, zero backend requests, fully client-side.
+* **JavaScript & TypeScript Generation**:
+  * **JSON to JS Object**: Strips unnecessary key quotes, adds ES6 module exports, single quotes, and trailing commas.
+  * **JSON to TypeScript Types**: Infers clean `interface` or `type` structures automatically.
+  * **JS to JSON**: Parses JavaScript object literals back to standard RFC 8259 JSON.
+* **Syntax Highlighting**: PrismJS tokenization for JavaScript, TypeScript, and JSON formatting.
+* **Formatting Controls**:
+  * **Wrappers**: `const`, `let`, `var`, `export const`, `export default`, `interface`, `type`, `as const`, or raw objects.
+  * **Quotes & Spacing**: Single quotes, double quotes, backticks, 2/4 spaces, or tab indentation.
+  * **Key Utilities**: Automatic property sorting and clean trailing comma management for Git diffs.
+* **PWA Enabled**: Installable locally for full offline usage.
+
+---
