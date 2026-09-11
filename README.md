@@ -13,8 +13,7 @@
 
 100% Free • Offline-First • Client-Side Only • Zero Latency
 
-[Live Demo](https://json2.js.org/) | [Report Bug](https://github.com/your-username/json-to-js-converter/issues) | [Request Feature](https://github.com/your-username/json-to-js-converter/issues)
-
+[Live Demo](https://json2.js.org/) | [Report Bug](mailto:rizwanislam505@gmail.com?subject=[Bug%20Report]%20JSON%20to%20JS/TS%20Converter) | [Request Feature](mailto:rizwanislam505@gmail.com?subject=[Feature%20Request]%20JSON%20to%20JS/TS%20Converter)
 ---
 
 ## Overview
